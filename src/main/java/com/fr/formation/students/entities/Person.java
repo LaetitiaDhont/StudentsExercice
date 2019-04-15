@@ -22,14 +22,6 @@ public class Person {
     @Embedded // Intégré
     private UserAccount userAccount;
 
-    public UserAccount getUserAccount() {
-        return userAccount;
-    }
-
-    public void setUserAccount(UserAccount userAccount) {
-        this.userAccount = userAccount;
-    }
-
     public Person() {
         super();
     }
@@ -65,5 +57,19 @@ public class Person {
         this.birthdate = birthdate;
     }
 
+    public Long getId() {
+        return id;
+    }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public UserAccount getUserAccount() {
+        return userAccount;
+    }
+
+    public void setUserAccount(UserAccount userAccount) {
+        this.userAccount = userAccount;
+    }
 }

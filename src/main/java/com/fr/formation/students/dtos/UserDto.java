@@ -5,6 +5,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.time.LocalDate;
 
+// Reflet du besoin client
 public class UserDto {
 
     @NotBlank
@@ -14,11 +15,9 @@ public class UserDto {
     private String lastname;
     @NotNull
     private LocalDate birthdate;
-    @NotNull
-    private boolean active;
 
-    public UserDto(){
 
+    public UserDto() {
     }
 
     public String getFirstname() {
@@ -45,11 +44,5 @@ public class UserDto {
         this.birthdate = birthdate;
     }
 
-    public boolean isActive() {
-        return active;
-    }
 
-    public void setActive(boolean active) {
-        this.active = active;
-    }
 }

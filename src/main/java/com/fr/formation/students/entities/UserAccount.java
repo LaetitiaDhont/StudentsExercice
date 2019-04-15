@@ -1,9 +1,6 @@
 package com.fr.formation.students.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.*;
 
 // Classe métier, ce n'est pas une entité
 @Embeddable // Intégrable
@@ -13,31 +10,24 @@ public class UserAccount {
     private String username;
     @Column(length = 12, nullable = false)
     private String password;
-
-    @Column(nullable = false)
-    private boolean accountNonExpired;
-    @Column(nullable = false)
-    private boolean accountNonLocked;
-    @Column(nullable = false)
-    private boolean credentialsNonExpired;
-    @Column(nullable = false)
-    private boolean enabled;
+    @Convert(converter = BooleanConverter.class)
+    @Column(nullable = false, length = 1)
+    private boolean accountNonExpired = true;
+    @Convert(converter = BooleanConverter.class)
+    @Column(nullable = false, length = 1)
+    private boolean accountNonLocked = true;
+    @Convert(converter = BooleanConverter.class)
+    @Column(nullable = false, length = 1)
+    private boolean credentialsNonExpired = true;
+    @Convert(converter = BooleanConverter.class)
+    @Column(nullable = false, length = 1)
+    private boolean enabled = true;
 
     @Column(nullable = false, length = 100)
     @Enumerated(EnumType.STRING)// Forcage du type en string pour éviter que Spring se base sur l'ordinal
-    private Role role;
+    private Role role = Role.ROLE_USER;
 
     public UserAccount() {
-    }
-
-    public UserAccount(String username, String password, boolean accountNonExpired, boolean accountNonLocked, boolean credentialsNonExpired, boolean enabled, Role role) {
-        this.username = username;
-        this.password = password;
-        this.accountNonExpired = accountNonExpired;
-        this.accountNonLocked = accountNonLocked;
-        this.credentialsNonExpired = credentialsNonExpired;
-        this.enabled = enabled;
-        this.role = role;
     }
 
     public String getUsername() {

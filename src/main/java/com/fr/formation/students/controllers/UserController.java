@@ -1,10 +1,10 @@
 package com.fr.formation.students.controllers;
 
 import com.fr.formation.students.dtos.UserCreateDto;
-import com.fr.formation.students.dtos.UserDto;
 import com.fr.formation.students.dtos.UserUpdateDto;
 import com.fr.formation.students.services.UserService;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -30,6 +30,13 @@ public class UserController {
     protected void update(@PathVariable(value = "id") Long id, @Valid @RequestBody UserUpdateDto user) {
 
     }
+
+    @DeleteMapping("{id}")
+    @Secured("ROLE_ADMIN")
+    protected void delete(@PathVariable(value = "id") Long id){
+        service.delete(id);
+    }
+
 
 
 }

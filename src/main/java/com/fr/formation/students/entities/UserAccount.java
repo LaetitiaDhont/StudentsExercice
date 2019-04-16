@@ -8,7 +8,7 @@ public class UserAccount {
 
     @Column(length = 100, nullable = false)
     private String username;
-    @Column(length = 12, nullable = false)
+    @Column(length = 100, nullable = false)
     private String password;
     @Convert(converter = BooleanConverter.class)
     @Column(nullable = false, length = 1)

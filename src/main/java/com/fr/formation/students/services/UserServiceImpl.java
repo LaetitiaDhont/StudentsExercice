@@ -3,14 +3,15 @@ package com.fr.formation.students.services;
 import com.fr.formation.students.dtos.UserCreateDto;
 import com.fr.formation.students.entities.Person;
 import com.fr.formation.students.entities.UserAccount;
+import com.fr.formation.students.repositories.PersonJpaRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserJpaRepository repo;
+    private final PersonJpaRepository repo;
 
-    public UserServiceImpl(UserJpaRepository repo) {
+    public UserServiceImpl(PersonJpaRepository repo) {
         this.repo = repo;
     }
 

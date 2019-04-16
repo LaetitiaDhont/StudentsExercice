@@ -43,6 +43,7 @@ public class StudentsApplication {
     @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
     protected static class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+
         @Autowired
         private UserDetailsService userDetailsService;
 

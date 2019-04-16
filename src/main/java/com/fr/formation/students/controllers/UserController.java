@@ -1,6 +1,7 @@
 package com.fr.formation.students.controllers;
 
 import com.fr.formation.students.dtos.UserCreateDto;
+import com.fr.formation.students.dtos.UserDto;
 import com.fr.formation.students.dtos.UserUpdateDto;
 import com.fr.formation.students.services.UserService;
 import org.springframework.http.HttpStatus;

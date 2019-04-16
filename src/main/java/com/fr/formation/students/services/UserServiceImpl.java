@@ -1,6 +1,7 @@
 package com.fr.formation.students.services;
 
 import com.fr.formation.students.dtos.UserCreateDto;
+import com.fr.formation.students.dtos.UserUpdateDto;
 import com.fr.formation.students.entities.Person;
 import com.fr.formation.students.entities.UserAccount;
 import com.fr.formation.students.repositories.PersonJpaRepository;

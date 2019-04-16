@@ -1,7 +1,5 @@
 package com.fr.formation.students.controllers;
 
-import java.security.Principal;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -18,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class SecurityController {
 
     protected SecurityController() {
-	// Default no-arg constructor
+        // Default no-arg constructor
     }
 
     /**
@@ -28,8 +26,8 @@ public class SecurityController {
      */
     @GetMapping("/me")
     protected User me() {
-	return (User) SecurityContextHolder.getContext()
-		.getAuthentication().getPrincipal();
+        return (User) SecurityContextHolder.getContext()
+                .getAuthentication().getPrincipal();
     }
 
     /**
@@ -41,9 +39,9 @@ public class SecurityController {
     @RequestMapping("/authError")
     // No security, anybody can create an account (see SecurityConfig)
     protected ResponseEntity<Object> authError() {
-	HttpStatus status = HttpStatus.BAD_REQUEST;
-	return new ResponseEntity<>(SecurityError.of(status, "Bad credentials"),
-		status);
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+        return new ResponseEntity<>(SecurityError.of(status, "Bad credentials"),
+                status);
     }
 
     /**
@@ -54,7 +52,7 @@ public class SecurityController {
     @RequestMapping("/logout")
     // No security, anybody can create an account (see SecurityConfig)
     protected ResponseEntity<Object> logout() {
-	return new ResponseEntity<>(null, HttpStatus.OK);
+        return new ResponseEntity<>(null, HttpStatus.OK);
     }
 
     /**
@@ -67,8 +65,8 @@ public class SecurityController {
     @RequestMapping("/login")
     // No security, anybody can create an account (see SecurityConfig)
     protected ResponseEntity<Object> login() {
-	HttpStatus status = HttpStatus.UNAUTHORIZED;
-	return new ResponseEntity<>(SecurityError.of(status, "Unauthorized"),
-		status);
+        HttpStatus status = HttpStatus.UNAUTHORIZED;
+        return new ResponseEntity<>(SecurityError.of(status, "Unauthorized"),
+                status);
     }
 }

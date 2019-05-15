@@ -1,9 +1,13 @@
 package com.fr.formation.students.services;
 
 import com.fr.formation.students.dtos.UserCreateDto;
+import com.fr.formation.students.dtos.UserViewDto;
 import com.fr.formation.students.entities.Person;
 import com.fr.formation.students.entities.UserAccount;
 import com.fr.formation.students.repositories.PersonJpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -39,6 +43,12 @@ public class UserServiceImpl implements UserService {
     @Override
     public void delete(Long id) {
         repo.deleteById(id);
+    }
+
+    @Override
+    public Page<UserViewDto> findAll(Integer size, Integer page) {
+        Pageable pageable = PageRequest.of(page, size);
+        return repo.findAllAsDto(pageable);
     }
 
 

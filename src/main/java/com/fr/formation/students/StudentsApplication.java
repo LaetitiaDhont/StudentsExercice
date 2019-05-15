@@ -29,12 +29,13 @@ public class StudentsApplication {
 
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                registry.addMapping("/**").allowedOrigins("*").allowedMethods("*");
+                registry.addMapping("/**").allowedOrigins("*")
+                        .allowedMethods("*").allowCredentials(true);
             }
         };
     }
 
-    @Bean // "Candidate à être injecté" retourne un objet géré par Spring
+    @Bean
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
@@ -42,7 +43,6 @@ public class StudentsApplication {
     @EnableWebSecurity
     @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true)
     protected static class SecurityConfig extends WebSecurityConfigurerAdapter {
-
 
         @Autowired
         private UserDetailsService userDetailsService;
@@ -56,10 +56,9 @@ public class StudentsApplication {
         @Override
         protected void configure(HttpSecurity http) throws Exception {
             // CSRF disabled to ease tests with Postman
-            http.csrf().disable().authorizeRequests()
-                    .antMatchers("/login", "/security/authError",
-                            "/security/login", "/security/logout", "/users")
-                    // "/mvc/**" for JSP examples
+            http.cors().and().csrf().disable().authorizeRequests()
+                    .antMatchers("/login", "/users", "/security/authError",
+                            "/security/login", "/security/logout")
                     .permitAll().and().formLogin().loginPage("/security/login")
                     .loginProcessingUrl("/login")
                     .defaultSuccessUrl("/security/me", true)
@@ -70,5 +69,4 @@ public class StudentsApplication {
                     .authorizeRequests().anyRequest().authenticated();
         }
     }
-
 }
